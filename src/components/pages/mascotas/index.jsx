@@ -1,7 +1,6 @@
 import React from "react"
 import clsx from "clsx"
 import axios from 'axios'
-
 import bar from '../../layout/bar.js'
 import m1 from '../../imagenes/servers/mascotas.jpg'
 import { useNavigate } from "react-router-dom";

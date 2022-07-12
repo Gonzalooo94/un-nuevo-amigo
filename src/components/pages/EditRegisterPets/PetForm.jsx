@@ -5,16 +5,15 @@ import axios from "axios";
 
 export default function PetForm ({ id, animal }) {
     const { register, formState: { errors }, handleSubmit } = useForm({
-      defaultValues: animal
+      defaultValues: animal?.[0]
     });
 
     const onSubmit = async (data) => {
-        console.log(data)
+        console.log({ data,  })
        
-        const response = await axios.put('https://proyectorefugioanimal.herokuapp.com/animals/' + id, data)
+        const response = await axios.put('https://proyectorefugioanimal.herokuapp.com/animals/' + id, { ...data, userId: '62cccec538e86667b5577d94' })
 
-        console.log(response.data)
-        
+        console.log(response.data)       
     }  
 
 
@@ -25,7 +24,7 @@ export default function PetForm ({ id, animal }) {
                     <div className=" col-8 container    ">
                     <div className=" rounded-3  col-7 container ">                        
                     
-                    <form action=""  onSubmit={handleSubmit(onSubmit) }  >
+                    <form onSubmit={handleSubmit(onSubmit)}  >
                         
                     <div>Nombre de Mascota</div>
     
@@ -35,7 +34,7 @@ export default function PetForm ({ id, animal }) {
         maxLength: {value: 20,message: 'No más de 20 carácteres!'} ,
          minLength:{value: 2,message: 'No menos de 2 carácteres!'}})} />
     <span className="text-danger text-small d-block mb-2">
-        {errors?.nombre?.message}
+        {errors?.name?.message}
     </span>
     
     <div>Raza</div>
@@ -46,7 +45,7 @@ export default function PetForm ({ id, animal }) {
         maxLength: {value: 10,message: 'No más de 10 carácteres!'} ,
          minLength:{value: 3,message: 'No menos de 3 carácteres!'}})} />
     <span className="text-danger text-small d-block mb-2">
-        {errors?.raza?.message}
+        {errors?.breed?.message}
     </span>
     
     <div>Sexo</div>
@@ -60,7 +59,7 @@ export default function PetForm ({ id, animal }) {
         required:{value:true,message: 'Sexo es requerido'}, 
         })} /> hembra
     <span className="text-danger text-small d-block mb-2">
-        {errors?.sexo?.message}
+        {errors?.gender?.message}
     </span>
     
     <div>Edad</div>
@@ -72,7 +71,7 @@ export default function PetForm ({ id, animal }) {
                     maxLength: {value: 2,message: 'No más de 2 carácteres!'} ,
                      minLength:{value: 1,message: 'No menos de 1 carácteres!'}})} />
                 <span className="text-danger text-small d-block mb-2">
-                    {errors?.edad?.message}
+                    {errors?.age?.message}
                 </span>
     
                 <div>Especie</div>
@@ -82,7 +81,7 @@ export default function PetForm ({ id, animal }) {
         maxLength: {value: 10,message: 'No más de 10 carácteres!'} ,
          minLength:{value: 2,message: 'No menos de 2 carácteres!'}})} />
     <span className="text-danger text-small d-block mb-2">
-        {errors?.especie?.message}
+        {errors?.type?.message}
     </span>
     
     <div>Tamaño</div>
@@ -91,7 +90,7 @@ export default function PetForm ({ id, animal }) {
         maxLength: {value: 10,message: 'No más de 10 carácteres!'} ,
          minLength:{value: 2,message: 'No menos de 2 carácteres!'}})} />
     <span className="text-danger text-small d-block mb-2">
-        {errors?.porte?.message}
+        {errors?.bearing?.message}
     </span>
 
     <div>descripcion</div>
@@ -100,7 +99,7 @@ export default function PetForm ({ id, animal }) {
         maxLength: {value: 10,message: 'No más de 10 carácteres!'} ,
          minLength:{value: 2,message: 'No menos de 2 carácteres!'}})} />
     <span className="text-danger text-small d-block mb-2">
-        {errors?.porte?.message}
+        {errors?.description?.message}
     </span>
     
     
